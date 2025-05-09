@@ -2,7 +2,7 @@ import { HttpException, Inject, Injectable } from "@nestjs/common";
 import { WINSTON_MODULE_PROVIDER } from "nest-winston";
 import { PrismaService } from "src/common/prisma.service";
 import { ValidationService } from "src/common/validation.service";
-import { LoginUaserRequest, RegisterUserRequest, UserResponse } from "src/model/user.model";
+import { LoginUaserRequest, RegisterUserRequest, UpdateUserRequest, UserResponse } from "src/model/user.model";
 import {Logger} from "winston";
 import { UserValidation } from "./user.validation";
 import * as bcrypt from 'bcrypt';
@@ -21,7 +21,7 @@ export class UserService {
     }
 
     async register(request: RegisterUserRequest) : Promise<UserResponse> {
-        this.logger.info(`register new user ${JSON.stringify(request)}`);
+        this.logger.debug(`register new user ${JSON.stringify(request)}`);
         const registerRequest: RegisterUserRequest = this.validationService.validate(UserValidation.REGISTER, request);
         
         // cek di db dulu apakah username tsb sudah ada di db
@@ -48,7 +48,7 @@ export class UserService {
     }
 
     async login(request: LoginUaserRequest): Promise<UserResponse> {
-        this.logger.info(`Userservice.login(${JSON.stringify(request)})`);
+        this.logger.debug(`Userservice.login(${JSON.stringify(request)})`);
         const loginRequest: LoginUaserRequest = this.validationService.validate(
             UserValidation.LOGIN, 
             request
@@ -93,6 +93,52 @@ export class UserService {
         return {
             username: user.username,
             name: user.name
+        }
+    }
+
+    async update(user: User, request: UpdateUserRequest) : Promise<UserResponse> {
+        this.logger.debug(`UserService.update(${JSON.stringify(user)}, ${JSON.stringify(request)})`)
+
+        const updateRequest: UpdateUserRequest = this.validationService.validate(
+            UserValidation.UPDATE, 
+            request
+        );
+
+        if(updateRequest.name) {
+            user.name = updateRequest.name;
+        }
+
+        if(updateRequest.password) {
+            user.password = await bcrypt.hash(updateRequest.password, 10);
+        }
+
+        const result = await this.prismaService.user.update({
+            where: {
+                username: user.username
+            },
+            data: user
+        });
+
+        return {
+            name: result.name,
+            username: result.username
+        }
+        
+    }
+
+    async logout(user: User) : Promise<UserResponse> {
+        const result = await this.prismaService.user.update({
+            where: {
+                username: user.username
+            },
+            data: {
+                token: null
+            }
+        });
+
+        return {
+            username: result.username,
+            name: result.name
         }
     }
 
