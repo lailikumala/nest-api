@@ -10,25 +10,26 @@ import { AuthMiddleware } from './auth.middleware';
 
 @Global()
 @Module({
-    imports: [
-        WinstonModule.forRoot({
-            format: winston.format.json(),
+  imports: [
+    WinstonModule.forRoot({
+      level: 'debug',
+      format: winston.format.json(),
             transports: [new winston.transports.Console()]
-        }),
-        ConfigModule.forRoot({
+    }),
+    ConfigModule.forRoot({
             isGlobal: true
         })
-    ],
+  ],
     providers: [PrismaService, ValidationService,
-        {
-            provide: APP_FILTER,
+    {
+      provide: APP_FILTER,
             useClass: ErrorFilter
         }
-    ],
+  ],
     exports: [PrismaService, ValidationService]
 })
 export class CommonModule implements NestModule {
-    configure(consumer: MiddlewareConsumer) {
-        consumer.apply(AuthMiddleware).forRoutes('/api/*');
-    }
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(AuthMiddleware).forRoutes('/api/*');
+  }
 }

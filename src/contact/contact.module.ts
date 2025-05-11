@@ -1,11 +1,12 @@
-import { Module } from "@nestjs/common";
-import { ContactService } from "./contact.service";
-import { ContactController } from "./contact.controller";
+import { forwardRef, Module } from '@nestjs/common';
+import { ContactService } from './contact.service';
+import { ContactController } from './contact.controller';
+import { AddressModule } from 'src/address/address.module';
 
 @Module({
-    providers: [ContactService],
-    controllers: [ContactController]
+  imports: [forwardRef(() => AddressModule)],
+  exports: [ContactService],
+  providers: [ContactService],
+  controllers: [ContactController],
 })
-export class ContactModule {
-
-}
+export class ContactModule {}
