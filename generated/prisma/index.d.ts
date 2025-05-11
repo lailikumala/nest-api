@@ -3062,7 +3062,7 @@ export namespace Prisma {
     id: number | null
     street: string | null
     city: string | null
-    provice: string | null
+    province: string | null
     country: string | null
     postal_code: string | null
     contact_id: number | null
@@ -3072,7 +3072,7 @@ export namespace Prisma {
     id: number | null
     street: string | null
     city: string | null
-    provice: string | null
+    province: string | null
     country: string | null
     postal_code: string | null
     contact_id: number | null
@@ -3082,7 +3082,7 @@ export namespace Prisma {
     id: number
     street: number
     city: number
-    provice: number
+    province: number
     country: number
     postal_code: number
     contact_id: number
@@ -3104,7 +3104,7 @@ export namespace Prisma {
     id?: true
     street?: true
     city?: true
-    provice?: true
+    province?: true
     country?: true
     postal_code?: true
     contact_id?: true
@@ -3114,7 +3114,7 @@ export namespace Prisma {
     id?: true
     street?: true
     city?: true
-    provice?: true
+    province?: true
     country?: true
     postal_code?: true
     contact_id?: true
@@ -3124,7 +3124,7 @@ export namespace Prisma {
     id?: true
     street?: true
     city?: true
-    provice?: true
+    province?: true
     country?: true
     postal_code?: true
     contact_id?: true
@@ -3221,7 +3221,7 @@ export namespace Prisma {
     id: number
     street: string | null
     city: string | null
-    provice: string | null
+    province: string | null
     country: string
     postal_code: string
     contact_id: number
@@ -3250,7 +3250,7 @@ export namespace Prisma {
     id?: boolean
     street?: boolean
     city?: boolean
-    provice?: boolean
+    province?: boolean
     country?: boolean
     postal_code?: boolean
     contact_id?: boolean
@@ -3263,13 +3263,13 @@ export namespace Prisma {
     id?: boolean
     street?: boolean
     city?: boolean
-    provice?: boolean
+    province?: boolean
     country?: boolean
     postal_code?: boolean
     contact_id?: boolean
   }
 
-  export type AddressOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "street" | "city" | "provice" | "country" | "postal_code" | "contact_id", ExtArgs["result"]["address"]>
+  export type AddressOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "street" | "city" | "province" | "country" | "postal_code" | "contact_id", ExtArgs["result"]["address"]>
   export type AddressInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     contact?: boolean | ContactDefaultArgs<ExtArgs>
   }
@@ -3283,7 +3283,7 @@ export namespace Prisma {
       id: number
       street: string | null
       city: string | null
-      provice: string | null
+      province: string | null
       country: string
       postal_code: string
       contact_id: number
@@ -3660,7 +3660,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Address", 'Int'>
     readonly street: FieldRef<"Address", 'String'>
     readonly city: FieldRef<"Address", 'String'>
-    readonly provice: FieldRef<"Address", 'String'>
+    readonly province: FieldRef<"Address", 'String'>
     readonly country: FieldRef<"Address", 'String'>
     readonly postal_code: FieldRef<"Address", 'String'>
     readonly contact_id: FieldRef<"Address", 'Int'>
@@ -4065,7 +4065,7 @@ export namespace Prisma {
     id: 'id',
     street: 'street',
     city: 'city',
-    provice: 'provice',
+    province: 'province',
     country: 'country',
     postal_code: 'postal_code',
     contact_id: 'contact_id'
@@ -4114,7 +4114,7 @@ export namespace Prisma {
   export const AddressOrderByRelevanceFieldEnum: {
     street: 'street',
     city: 'city',
-    provice: 'provice',
+    province: 'province',
     country: 'country',
     postal_code: 'postal_code'
   };
@@ -4275,7 +4275,7 @@ export namespace Prisma {
     id?: IntFilter<"Address"> | number
     street?: StringNullableFilter<"Address"> | string | null
     city?: StringNullableFilter<"Address"> | string | null
-    provice?: StringNullableFilter<"Address"> | string | null
+    province?: StringNullableFilter<"Address"> | string | null
     country?: StringFilter<"Address"> | string
     postal_code?: StringFilter<"Address"> | string
     contact_id?: IntFilter<"Address"> | number
@@ -4286,7 +4286,7 @@ export namespace Prisma {
     id?: SortOrder
     street?: SortOrderInput | SortOrder
     city?: SortOrderInput | SortOrder
-    provice?: SortOrderInput | SortOrder
+    province?: SortOrderInput | SortOrder
     country?: SortOrder
     postal_code?: SortOrder
     contact_id?: SortOrder
@@ -4301,7 +4301,7 @@ export namespace Prisma {
     NOT?: AddressWhereInput | AddressWhereInput[]
     street?: StringNullableFilter<"Address"> | string | null
     city?: StringNullableFilter<"Address"> | string | null
-    provice?: StringNullableFilter<"Address"> | string | null
+    province?: StringNullableFilter<"Address"> | string | null
     country?: StringFilter<"Address"> | string
     postal_code?: StringFilter<"Address"> | string
     contact_id?: IntFilter<"Address"> | number
@@ -4312,7 +4312,7 @@ export namespace Prisma {
     id?: SortOrder
     street?: SortOrderInput | SortOrder
     city?: SortOrderInput | SortOrder
-    provice?: SortOrderInput | SortOrder
+    province?: SortOrderInput | SortOrder
     country?: SortOrder
     postal_code?: SortOrder
     contact_id?: SortOrder
@@ -4330,7 +4330,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Address"> | number
     street?: StringNullableWithAggregatesFilter<"Address"> | string | null
     city?: StringNullableWithAggregatesFilter<"Address"> | string | null
-    provice?: StringNullableWithAggregatesFilter<"Address"> | string | null
+    province?: StringNullableWithAggregatesFilter<"Address"> | string | null
     country?: StringWithAggregatesFilter<"Address"> | string
     postal_code?: StringWithAggregatesFilter<"Address"> | string
     contact_id?: IntWithAggregatesFilter<"Address"> | number
@@ -4455,7 +4455,7 @@ export namespace Prisma {
   export type AddressCreateInput = {
     street?: string | null
     city?: string | null
-    provice?: string | null
+    province?: string | null
     country: string
     postal_code: string
     contact: ContactCreateNestedOneWithoutAddressesInput
@@ -4465,7 +4465,7 @@ export namespace Prisma {
     id?: number
     street?: string | null
     city?: string | null
-    provice?: string | null
+    province?: string | null
     country: string
     postal_code: string
     contact_id: number
@@ -4474,7 +4474,7 @@ export namespace Prisma {
   export type AddressUpdateInput = {
     street?: NullableStringFieldUpdateOperationsInput | string | null
     city?: NullableStringFieldUpdateOperationsInput | string | null
-    provice?: NullableStringFieldUpdateOperationsInput | string | null
+    province?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     postal_code?: StringFieldUpdateOperationsInput | string
     contact?: ContactUpdateOneRequiredWithoutAddressesNestedInput
@@ -4484,7 +4484,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     street?: NullableStringFieldUpdateOperationsInput | string | null
     city?: NullableStringFieldUpdateOperationsInput | string | null
-    provice?: NullableStringFieldUpdateOperationsInput | string | null
+    province?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     postal_code?: StringFieldUpdateOperationsInput | string
     contact_id?: IntFieldUpdateOperationsInput | number
@@ -4494,7 +4494,7 @@ export namespace Prisma {
     id?: number
     street?: string | null
     city?: string | null
-    provice?: string | null
+    province?: string | null
     country: string
     postal_code: string
     contact_id: number
@@ -4503,7 +4503,7 @@ export namespace Prisma {
   export type AddressUpdateManyMutationInput = {
     street?: NullableStringFieldUpdateOperationsInput | string | null
     city?: NullableStringFieldUpdateOperationsInput | string | null
-    provice?: NullableStringFieldUpdateOperationsInput | string | null
+    province?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     postal_code?: StringFieldUpdateOperationsInput | string
   }
@@ -4512,7 +4512,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     street?: NullableStringFieldUpdateOperationsInput | string | null
     city?: NullableStringFieldUpdateOperationsInput | string | null
-    provice?: NullableStringFieldUpdateOperationsInput | string | null
+    province?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     postal_code?: StringFieldUpdateOperationsInput | string
     contact_id?: IntFieldUpdateOperationsInput | number
@@ -4724,7 +4724,7 @@ export namespace Prisma {
     id?: SortOrder
     street?: SortOrder
     city?: SortOrder
-    provice?: SortOrder
+    province?: SortOrder
     country?: SortOrder
     postal_code?: SortOrder
     contact_id?: SortOrder
@@ -4739,7 +4739,7 @@ export namespace Prisma {
     id?: SortOrder
     street?: SortOrder
     city?: SortOrder
-    provice?: SortOrder
+    province?: SortOrder
     country?: SortOrder
     postal_code?: SortOrder
     contact_id?: SortOrder
@@ -4749,7 +4749,7 @@ export namespace Prisma {
     id?: SortOrder
     street?: SortOrder
     city?: SortOrder
-    provice?: SortOrder
+    province?: SortOrder
     country?: SortOrder
     postal_code?: SortOrder
     contact_id?: SortOrder
@@ -5080,7 +5080,7 @@ export namespace Prisma {
   export type AddressCreateWithoutContactInput = {
     street?: string | null
     city?: string | null
-    provice?: string | null
+    province?: string | null
     country: string
     postal_code: string
   }
@@ -5089,7 +5089,7 @@ export namespace Prisma {
     id?: number
     street?: string | null
     city?: string | null
-    provice?: string | null
+    province?: string | null
     country: string
     postal_code: string
   }
@@ -5152,7 +5152,7 @@ export namespace Prisma {
     id?: IntFilter<"Address"> | number
     street?: StringNullableFilter<"Address"> | string | null
     city?: StringNullableFilter<"Address"> | string | null
-    provice?: StringNullableFilter<"Address"> | string | null
+    province?: StringNullableFilter<"Address"> | string | null
     country?: StringFilter<"Address"> | string
     postal_code?: StringFilter<"Address"> | string
     contact_id?: IntFilter<"Address"> | number
@@ -5245,7 +5245,7 @@ export namespace Prisma {
     id?: number
     street?: string | null
     city?: string | null
-    provice?: string | null
+    province?: string | null
     country: string
     postal_code: string
   }
@@ -5253,7 +5253,7 @@ export namespace Prisma {
   export type AddressUpdateWithoutContactInput = {
     street?: NullableStringFieldUpdateOperationsInput | string | null
     city?: NullableStringFieldUpdateOperationsInput | string | null
-    provice?: NullableStringFieldUpdateOperationsInput | string | null
+    province?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     postal_code?: StringFieldUpdateOperationsInput | string
   }
@@ -5262,7 +5262,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     street?: NullableStringFieldUpdateOperationsInput | string | null
     city?: NullableStringFieldUpdateOperationsInput | string | null
-    provice?: NullableStringFieldUpdateOperationsInput | string | null
+    province?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     postal_code?: StringFieldUpdateOperationsInput | string
   }
@@ -5271,7 +5271,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     street?: NullableStringFieldUpdateOperationsInput | string | null
     city?: NullableStringFieldUpdateOperationsInput | string | null
-    provice?: NullableStringFieldUpdateOperationsInput | string | null
+    province?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     postal_code?: StringFieldUpdateOperationsInput | string
   }

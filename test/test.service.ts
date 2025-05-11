@@ -1,41 +1,11 @@
-import { Injectable } from "@nestjs/common";
-import { PrismaService } from "src/common/prisma.service";
+import { PrismaService } from '../src/common/prisma.service';
+import { HttpException, Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { User } from "generated/prisma";
-import { Contact } from "@prisma/client";
+import { Address, Contact, User } from '@prisma/client';
 
 @Injectable()
 export class TestService {
     constructor(private prismaService: PrismaService) { }
-
-    async deleteAddress() {
-        const contact = await this.prismaService.contact.findFirst({
-            where: { username: 'test' },
-            select: { id: true },
-        });
-
-        if (contact) {
-            await this.prismaService.address.deleteMany({
-                where: { contact_id: contact.id },
-            });
-        }
-    }
-
-    async deleteContact() {
-        await this.prismaService.contact.deleteMany({
-            where: {
-                username: 'test'
-            },
-        })
-    }
-
-    async deleteUser() {
-        await this.prismaService.user.deleteMany({
-            where: {
-                username: 'test'
-            }
-        })
-    }
 
     async deleteAllTestData() {
         await this.deleteAddress();
@@ -43,18 +13,40 @@ export class TestService {
         await this.deleteUser();
     }
 
+    async deleteUser() {
+        await this.prismaService.user.deleteMany({
+            where: {
+                username: 'test',
+            },
+        });
+    }
+
+    async deleteContact() {
+        const contact = await this.prismaService.contact.deleteMany({
+            where: {
+                username: 'test',
+            },
+        });
+
+        if(!contact) {
+            throw new HttpException(`contact not found`, 404);
+        }
+
+        return contact;
+    }
+
     async getUser(): Promise<User> {
         const user = await this.prismaService.user.findUnique({
             where: {
-                username: 'test'
-            }
+                username: 'test',
+            },
         });
 
-        if (!user) {
-            throw new Error('User not found');
+        if(!user) {
+            throw new HttpException(`user not found`, 404);
         }
 
-        return user;
+        return user
     }
 
     async createUser() {
@@ -63,23 +55,23 @@ export class TestService {
                 username: 'test',
                 name: 'test',
                 password: await bcrypt.hash('test', 10),
-                token: 'test'
-            }
-        })
+                token: 'test',
+            },
+        });
     }
 
     async getContact(): Promise<Contact> {
         const contact = await this.prismaService.contact.findFirst({
             where: {
-                username: 'test'
-            }
-        })
+                username: 'test',
+            },
+        });
 
-        if (!contact) {
-            throw new Error(`Contact not found`)
+        if(!contact) {
+            throw new HttpException(`contact not found`, 404);
         }
 
-        return contact
+        return contact;
     }
 
     async createContact() {
@@ -89,8 +81,48 @@ export class TestService {
                 last_name: 'test',
                 email: 'test@gmail.com',
                 phone: '0000',
-                username: 'test'
-            }
-        })
+                username: 'test',
+            },
+        });
+    }
+
+    async deleteAddress() {
+        await this.prismaService.address.deleteMany({
+            where: {
+                contact: {
+                    username: 'test',
+                },
+            },
+        });
+    }
+
+    async createAddress() {
+        const contact = await this.getContact();
+        await this.prismaService.address.create({
+            data: {
+                contact_id: contact.id,
+                street: 'street',
+                city: 'city',
+                province: 'province',
+                country: 'country',
+                postal_code: '3333',
+            },
+        });
+    }
+
+    async getAddress(): Promise<Address> {
+        const address= await this.prismaService.address.findFirst({
+            where: {
+                contact: {
+                    username: 'test',
+                },
+            },
+        });
+
+        if(!address) {
+            throw new HttpException(`address\ not found`, 404);
+        }
+
+        return address;
     }
 }

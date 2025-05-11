@@ -140,7 +140,7 @@ exports.Prisma.AddressScalarFieldEnum = {
   id: 'id',
   street: 'street',
   city: 'city',
-  provice: 'provice',
+  province: 'province',
   country: 'country',
   postal_code: 'postal_code',
   contact_id: 'contact_id'
@@ -174,7 +174,7 @@ exports.Prisma.ContactOrderByRelevanceFieldEnum = {
 exports.Prisma.AddressOrderByRelevanceFieldEnum = {
   street: 'street',
   city: 'city',
-  provice: 'provice',
+  province: 'province',
   country: 'country',
   postal_code: 'postal_code'
 };
